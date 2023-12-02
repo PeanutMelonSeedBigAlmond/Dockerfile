@@ -1,6 +1,8 @@
 FROM openjdk:17.0.2
 
-ENV HATH_URL=https://repo.e-hentai.org/hath/HentaiAtHome_1.6.1.zip
+ARG hathVersion=1.6.2
+
+ENV HATH_URL=https://repo.e-hentai.org/hath/HentaiAtHome_${hathVersion}.zip
 ENV TZ=Asia/Shanghai
 
 COPY . /
