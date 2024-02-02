@@ -16,11 +16,17 @@ ENV PUBLIC_PORT=
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
 USER root
-RUN mkdir /opt/palworld && chown steam:steam /opt/palworld
+RUN mkdir /opt/palworld && \
+    chown steam:steam /opt/palworld
 
 USER steam
 WORKDIR /opt/palworld
 RUN /home/steam/steamcmd/steamcmd.sh +force_install_dir "/opt/palworld" +login anonymous +app_update 2394010 validate +quit
 
+USER root
+RUN mkdir -p /opt/palworld/Pal/Saved && \
+    chmod 777 /opt/palworld/Pal/Saved
+
+USER steam
 VOLUME "/opt/palworld/Pal/Saved"
 ENTRYPOINT ["/bin/bash","/docker-entrypoint.sh"]
