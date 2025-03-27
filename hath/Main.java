@@ -1,3 +1,5 @@
+#!/usr/bin/env -S java --add-opens java.base/java.net=ALL-UNNAMED --source 21
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
